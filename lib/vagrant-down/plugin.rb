@@ -4,17 +4,22 @@ require "vagrant"
 module VagrantPlugins
   module Down
     class Plugin < Vagrant.plugin("2")
-      name "vagrant-down"
-      description <<-DESC
-      This plugin is an alias for the `destroy` command.
-      DESC
 
-      command("down") do
+      name "vagrant-down"
+      description "This plugin is an alias for the `destroy` command."
+
+      command :down do
         Command
       end
+
     end
 
     class Command < Vagrant.plugin(2, :command)
+
+      def self.synopsis
+        'alias for destroy command'
+      end
+
       def execute
         options = {
           force: false
